@@ -69,6 +69,12 @@ Check the `/prompts/` folder in this repository. There are some AI prompts inclu
 While possible, **it is not recommended**. One of the main benefits of LaTeX is that it creates a perfectly formatted PDF that looks professional on any device. Converting to Word often messes up the design.
 </details>
 
+<details>
+<summary><strong>How do I generate the PDFs of my resumes?</strong></summary>
+
+For each push (upload of code) to the repository, a workflow will automatically generate new PDFs with the latest changes. You can download them from the "Actions" tab in GitHub.
+</details>
+
 ---
 
 <div id="português"></div>
@@ -124,6 +130,12 @@ Verifique a pasta `/prompts/` neste repositório. Estão incluídos alguns promp
 <summary><strong>Posso converter para Word?</strong></summary>
 
 Embora seja possível, **não é recomendado**. Um dos principais benefícios do LaTeX é criar um PDF perfeitamente formatado que parece profissional em qualquer dispositivo. Converter para Word geralmente quebra o design.
+</details>
+
+<details>
+<summary><strong>Como gero os PDFs do meu currículo?</strong></summary>
+
+Para cada push (envio de código) no repositório, um fluxo de trabalho (workflow) gerará automaticamente novos PDFs com as alterações mais recentes. Você pode baixá-los na aba "Actions" (Ações) do GitHub.
 </details>
 
 ---
