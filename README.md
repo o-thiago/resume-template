@@ -16,11 +16,11 @@
 
 <div id="english"></div>
 
-# LaTeX Resume Template
+# LaTeX Resume Template 
 
 A professional, clean, and easy-to-use resume template built with LaTeX. **You don't need to be a programmer to use this!**
 
-## 🚀 How to use (No coding required)
+## 🧩 How to use (No coding required)
 
 If you are not familiar with GitHub or coding, the easiest way to use this template is with **Overleaf** (a website that edits LaTeX documents online).
 
@@ -77,7 +77,7 @@ While possible, **it is not recommended**. One of the main benefits of LaTeX is 
 
 Um modelo de currículo profissional, limpo e fácil de usar, feito em LaTeX. **Você não precisa ser um programador para usar isso!**
 
-## Como usar (Sem precisar programar)
+## 🧩 Como usar (Sem precisar programar)
 
 Se você não tem familiaridade com GitHub ou código, a maneira mais fácil é usar o **Overleaf** (um site para editar documentos LaTeX online).
 
