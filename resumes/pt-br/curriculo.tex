@@ -13,45 +13,75 @@
 % a4paper = tamanho A4, 10pt = tamanho base da fonte
 \documentclass[a4paper,10pt]{article}
 
-% --- PACOTES ---
+% --- PACOTES: BASE / IDIOMA ---
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[portuguese]{babel}
+
+% --- PACOTES: LAYOUT / TIPOGRAFIA ---
 \usepackage{geometry}
 \usepackage{parskip}
-\usepackage{hyperref}
+\usepackage{microtype}
+\usepackage{enumitem}
 \usepackage{titlesec}
-% Para quebras de linha em URLs longas (não use \href{}, use \url{} para URLs longas)
-% \usepackage{xurl}
+\usepackage{array}
+\usepackage{tabularx}
 
-% --- CONFIGURAÇÃO DO DOCUMENTO ---
-% Define margens da página para maximizar espaço de conteúdo
-\geometry{top=1.0cm, bottom=1.0cm, left=1.0cm, right=1.0cm}
+% --- PACOTES: LINKS / BOOKMARKS ---
+\usepackage{hyperref}
+\usepackage{bookmark}
+\usepackage{xurl}
+
+% --- CONFIGURAÇÃO: MARGENS / ESPAÇAMENTO ---
+\geometry{top=1.0cm, bottom=1.0cm, left=1.0cm, right=1.0cm} % Margens da página
+\setcounter{secnumdepth}{0}                                  % Remove numeração de seção
+\setlist[itemize]{
+    leftmargin=0.75em, % Recuo da lista (mais perto da margem da página)
+    itemsep=0.2em,     % Espaço entre itens
+    topsep=0.25em,     % Espaço antes/depois da lista
+    parsep=0em,        % Espaço entre parágrafos no mesmo item
+    partopsep=0em      % Espaço extra ao iniciar a lista
+}
 
 % Remove números de página e cabeçalhos para visual limpo do currículo
 \pagestyle{empty}
 
-% Metadados do PDF - personalize com suas informações
+% --- CONFIGURAÇÃO: METADADOS / LINKS ---
 \hypersetup{
-    pdftitle={CV Seu Nome},
-    pdfauthor={Seu Nome},
-    colorlinks=true,
-    linkcolor=black,
-    urlcolor=black,
-    citecolor=black,
-    bookmarksdepth=1 
+    pdftitle={CV Seu Nome},   % Título do PDF
+    pdfauthor={Seu Nome},     % Autor do PDF
+    colorlinks=true,          % Usa cor nos links (sem caixa)
+    linkcolor=black,          % Cor de links internos
+    urlcolor=black,           % Cor de URLs
+    citecolor=black,          % Cor de citações
+    bookmarksdepth=2          % Sidebar: section e subsection
 }
 
-% Desabilita numeração das sections
-\setcounter{secnumdepth}{0}
-
-% Formata os cabeçalhos de cada section e coloca uma linha em baixo
+% --- CONFIGURAÇÃO: TÍTULOS ---
 \titleformat{\section}
 {\Large\bfseries}
 {}
 {0em}
 {}
 [\titlerule\vspace{0.5ex}]
+\titleformat{\subsection}
+{\normalsize\bfseries}
+{}
+{0em}
+{}
+\titlespacing*{\subsection}{0pt}{0.35em}{0.15em}
+
+% Macro para entradas do currículo com bookmark no PDF
+\newcounter{cventry}
+\newcommand{\cventry}[4]{%
+    \refstepcounter{cventry}%
+    \phantomsection%
+    \pdfbookmark[2]{#1}{cventry-\thecventry}%
+    \noindent\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X >{\raggedleft\arraybackslash}X@{}}
+    \textbf{#1} & #2 \\
+    \textit{#3} & \textit{#4} \\
+    \end{tabularx}
+}
 
 % --- INÍCIO DO DOCUMENTO ---
 \begin{document}
@@ -65,21 +95,16 @@
     {\textbullet}
     Email: \href{mailto:seu.email@exemplo.com}{seu.email@exemplo.com} 
     {\textbullet}
-    \href{https://www.linkedin.com/in/usuario}{linkedin.com/in/usuario} 
+    \url{https://www.linkedin.com/in/usuario} 
     {\textbullet}
-    \href{https://github.com/usuario}{github.com/usuario}
+    \url{https://github.com/usuario}
 \end{center}
 
 % --- SEÇÕES ---
 
-\section{Atividades de Liderança} 
+\section{Atividades de Liderança}
     % Inclua trabalho voluntário, ligas acadêmicas ou cargos de liderança
-    \subsection*{\texorpdfstring{
-            \textbf{Nome da Empresa/Organização} \hfill Localização (ex: Remoto ou Estado, País)
-        }{
-            Nome da Empresa (Liderança) -- Localização
-        }}
-    \textit{Seu Cargo/Posição \hfill Data de Início - Data de Término (ex: Jan 2024 - Atual)}
+    \cventry{Nome da Empresa/Organização}{Localização (ex: Remoto ou Estado, País)}{Seu Cargo/Posição}{Data de Início - Data de Término (ex: Jan 2024 - Atual)}
         \begin{itemize}
             % Use verbos de ação do README - quantifique seu impacto quando possível
             \item Descreva uma conquista significativa de liderança com métricas específicas.
@@ -91,37 +116,22 @@
 
 \section{Experiência}
     % Liste as suas experiência de trabalho ou acadêmicas, mais recente primeiro
-    \subsection*{\texorpdfstring{
-            \textbf{Nome da Empresa/Organização} \hfill Localização (ex: Remoto ou Estado, País)
-        }{
-            Nome da Empresa -- Localização
-        }}
-    \textit{Cargo (ex: Engenheiro de Software, Analista de Dados) \hfill Data de Início - Data de Término}
-        \begin{itemize} 
+    \cventry{Nome da Empresa/Organização}{Localização (ex: Remoto ou Estado, País)}{Cargo (ex: Engenheiro de Software, Analista de Dados)}{Data de Início - Data de Término}
+        \begin{itemize}
             % Foque em conquistas, não apenas na parte técnica - use o método STAR (Situação, Tarefa, Ação, Resultado)
             \item Alcancei [resultado específico] através de [ação tomada], resultando em [impacto quantificado].
             \item Desenvolvi/Construí/Criei [o que você fez] usando [tecnologias/métodos], resultando em [benefício].
             \item Colaborei com [tamanho/tipo da equipe] para [alcançar o quê], melhorando [métrica] em [porcentagem/quantidade].
         \end{itemize}
 
-    \subsection*{\texorpdfstring{
-        	\textbf{Nome da Empresa/Organização} \hfill Localização (ex: Remoto ou Estado, País)
-        }{
-            Nome da Empresa -- Localização
-        }}
-    \textit{Cargo (ex: Desenvolvedor Júnior, Assistente de Pesquisa) \hfill Data de Início - Data de Término}
+    \cventry{Nome da Empresa/Organização}{Localização (ex: Remoto ou Estado, País)}{Cargo (ex: Desenvolvedor Júnior, Assistente de Pesquisa)}{Data de Início - Data de Término}
         \begin{itemize}
             \item Use verbos ativos da tabela de verbos de ação no README.md
             \item Quantifique suas conquistas sempre que possível (números, porcentagens, prazos)
             \item Mostre progressão e responsabilidade crescente entre os cargos
         \end{itemize}
-        
-    \subsection*{\texorpdfstring{
-        	\textbf{Universidade/Instituição de Pesquisa} \hfill Localização (ex: Remoto ou Estado, País)
-        }{
-            Universidade/Instituição de Pesquisa -- Localização
-        }}
-    \textit{Função (ex: Pesquisador de Graduação, Monitor) \hfill Data de Início - Data de Término}
+
+    \cventry{Universidade/Instituição de Pesquisa}{Localização (ex: Remoto ou Estado, País)}{Função (ex: Pesquisador de Graduação, Monitor)}{Data de Início - Data de Término}
         \begin{itemize}
             \item Inclua pesquisa, trabalho acadêmico ou projetos que demonstrem habilidades técnicas
             \item Destaque publicações, apresentações ou descobertas significativas
@@ -147,11 +157,6 @@
 
 \section{Educação}
     % Formação mais recente primeiro
-    \subsection*{\texorpdfstring{
-            \textbf{Nome da Sua Universidade} \hfill Localização (ex: Remoto ou Estado, País)
-        }{
-            Nome da Sua Universidade (Educação) -- Localização
-        }}
-    \textit{Título do Seu Curso (ex: Bacharelado em Ciência da Computação) \hfill Data de Início - Data de Término (ex: Jan 2020 - Dez 2024)}
+    \cventry{Nome da Sua Universidade}{Localização (ex: Remoto ou Estado, País)}{Título do Seu Curso (ex: Bacharelado em Ciência da Computação)}{Data de Início - Data de Término (ex: Jan 2020 - Dez 2024)}
 
 \end{document}
