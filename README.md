@@ -18,7 +18,7 @@
 
 # LaTeX Resume Template 
 
-A professional, clean, and easy-to-use resume template built with LaTeX. **You don't need to be a programmer to use this!**
+A professional, clean, and easy-to-use resume template built with LaTeX. **You don't need to be a programmer to use it!**
 
 ## 🧩 How to use (No coding required)
 
@@ -81,7 +81,7 @@ Alternatively, if you are familiar with GitHub, each push (upload of code) to th
 
 # Modelo de Currículo em LaTeX
 
-Um modelo de currículo profissional, limpo e fácil de usar, feito em LaTeX. **Você não precisa ser um programador para usar isso!**
+Um modelo de currículo profissional, limpo e fácil de usar, feito em LaTeX. **Você não precisa ser um programador para usar ele!**
 
 ## 🧩 Como usar (Sem precisar programar)
 

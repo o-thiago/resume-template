@@ -33,8 +33,8 @@
 \usepackage{xurl}
 
 % --- CONFIGURAÇÃO: MARGENS / ESPAÇAMENTO ---
-\geometry{top=1.0cm, bottom=1.0cm, left=1.0cm, right=1.0cm} % Margens da página
-\setcounter{secnumdepth}{0}                                  % Remove numeração de seção
+\geometry{top=1.5cm, bottom=1.5cm, left=1.5cm, right=1.5cm} % Margens da página
+\setcounter{secnumdepth}{0}                                 % Remove numeração de seção
 \setlist[itemize]{
     leftmargin=0.75em, % Recuo da lista (mais perto da margem da página)
     itemsep=0.2em,     % Espaço entre itens
@@ -54,7 +54,7 @@
     linkcolor=black,          % Cor de links internos
     urlcolor=black,           % Cor de URLs
     citecolor=black,          % Cor de citações
-    bookmarksdepth=2          % Sidebar: section e subsection
+    bookmarksdepth=2          % Barra lateral: seção e subseção
 }
 
 % --- CONFIGURAÇÃO: TÍTULOS ---
@@ -87,17 +87,17 @@
 \begin{document}
 
 % --- CABEÇALHO ---
-% Substitua com suas informações pessoais
+% Substitua por suas informações pessoais
 \begin{center}
     {\LARGE \textbf{Nome Completo}} 
     \\ [0.1cm]
     Cidade, Estado
     {\textbullet}
-    Email: \href{mailto:seu.email@exemplo.com}{seu.email@exemplo.com} 
+    \href{mailto:seu.email@exemplo.com}{seu.email@exemplo.com} 
     {\textbullet}
-    \url{https://www.linkedin.com/in/usuario} 
+    \href{https://linkedin.com/in/usuario}{linkedin.com/in/usuario} 
     {\textbullet}
-    \url{https://github.com/usuario}
+    \href{https://github.com/usuario}{github.com/usuario}
 \end{center}
 
 % --- SEÇÕES ---
@@ -115,7 +115,7 @@
 % ------
 
 \section{Experiência}
-    % Liste as suas experiência de trabalho ou acadêmicas, mais recente primeiro
+    % Liste suas experiências profissionais ou acadêmicas, da mais recente para a mais antiga
     \cventry{Nome da Empresa/Organização}{Localização (ex: Remoto ou Estado, País)}{Cargo (ex: Engenheiro de Software, Analista de Dados)}{Data de Início - Data de Término}
         \begin{itemize}
             % Foque em conquistas, não apenas na parte técnica - use o método STAR (Situação, Tarefa, Ação, Resultado)
@@ -140,7 +140,7 @@
 % ------
 
 \section{Habilidades}
-    % Mantenha esta seção concisa e use o máximo de palavras chaves
+    % Mantenha esta seção concisa e use o máximo de palavras-chave
     % que fazem sentido para a vaga que você deseja.
     \begin{itemize}
         \item \textbf{Técnicas:} Liste suas linguagens de programação, frameworks, ferramentas e metodologias
@@ -150,7 +150,7 @@
 % ------
 
 % !!!!!!!!!!!!!!!!!!!!!!
-% Mude esta section para o começo, depois do header e antes
+% Mude esta seção para o começo, depois do cabeçalho e antes
 % das suas experiências se você está procurando sua primeira
 % vaga ou algum estágio. Do contrário, deixe como está.
 % !!!!!!!!!!!!!!!!!!!!!!
