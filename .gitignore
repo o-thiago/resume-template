@@ -27,3 +27,5 @@ Thumbs.db
 *.vrb
 *.fdb_latexmk
 *.xdv
+
+.idea
