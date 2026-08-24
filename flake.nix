@@ -41,6 +41,7 @@
             name = "resume";
             srcDir = "en";
           };
+
           cv-pt = buildCv {
             name = "curriculo";
             srcDir = "pt-br";
