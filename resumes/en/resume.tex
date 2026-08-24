@@ -9,66 +9,97 @@
 %
 % This template follows best practices from README.md
 
-% Start of LaTeX document: defines document type and format
-% a4paper = A4 page size, 10pt = base font size
+% Start of the LaTeX document: defines document type and format
+% a4paper = A4 size, 10pt = base font size
 \documentclass[a4paper,10pt]{article}
 
-% --- PACKAGES ---
+% --- PACKAGES: BASE / LANGUAGE ---
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[english]{babel}
+
+% --- PACKAGES: LAYOUT / TYPOGRAPHY ---
 \usepackage{geometry}
 \usepackage{parskip}
-\usepackage{hyperref}
+\usepackage{microtype}
+\usepackage{enumitem}
 \usepackage{titlesec}
-% For better line breaks in long URLs (don't use \href{}, use \url{} for long URLs)
-% \usepackage{xurl}
+\usepackage{array}
+\usepackage{tabularx}
 
-% --- DOCUMENT SETUP ---
-% Set page margins to maximize content space
-\geometry{top=1.0cm, bottom=1.0cm, left=1.0cm, right=1.0cm}
+% --- PACKAGES: LINKS / BOOKMARKS ---
+\usepackage{hyperref}
+\usepackage{bookmark}
+\usepackage{xurl}
 
-% Remove page numbers and headers for clean resume look
-\pagestyle{empty}
-
-% PDF metadata - customize with your information
-\hypersetup{
-    pdftitle={CV Thiago Macedo Mendes},
-    pdfauthor={Thiago Macedo Mendes},
-    colorlinks=true,
-    linkcolor=black,
-    urlcolor=black,
-    citecolor=black,
-    bookmarksdepth=1 
+% --- SETTINGS: MARGINS / SPACING ---
+\geometry{top=1.5cm, bottom=1.5cm, left=1.5cm, right=1.5cm} % Page margins
+\setcounter{secnumdepth}{0}                                 % Removes section numbering
+\setlist[itemize]{
+    leftmargin=0.75em, % List indentation (closer to page margin)
+    itemsep=0.2em,     % Space between items
+    topsep=0.25em,     % Space before/after list
+    parsep=0em,        % Space between paragraphs in same item
+    partopsep=0em      % Extra spacing at list start
 }
 
-% Disable section numbering for cleaner appearance
-\setcounter{secnumdepth}{0}
+% Removes page numbers and headers for a clean resume layout
+\pagestyle{empty}
 
-% Format section headers with bold text and underline
+% --- SETTINGS: METADATA / LINKS ---
+\hypersetup{
+    pdftitle={CV Thiago Macedo Mendes},   % PDF title
+    pdfauthor={Thiago Macedo Mendes},     % PDF author
+    colorlinks=true,           % Uses colored links (no boxes)
+    linkcolor=black,           % Internal links color
+    urlcolor=black,            % URLs color
+    citecolor=black,           % Citations color
+    bookmarksdepth=2           % Sidebar: section and subsection
+}
+
+% --- SETTINGS: TITLES ---
 \titleformat{\section}
 {\Large\bfseries}
 {}
 {0em}
 {}
 [\titlerule\vspace{0.5ex}]
+\titleformat{\subsection}
+{\normalsize\bfseries}
+{}
+{0em}
+{}
+\titlespacing*{\subsection}{0pt}{0.35em}{0.15em}
 
-% --- BEGIN DOCUMENT ---
+% Macro for resume entries with PDF bookmark
+\newcounter{cventry}
+\newcommand{\cventry}[4]{%
+    \refstepcounter{cventry}%
+    \phantomsection%
+    \pdfbookmark[2]{#1}{cventry-\thecventry}%
+    \noindent\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X >{\raggedleft\arraybackslash}X@{}}
+    \textbf{#1} & #2 \\
+    \textit{#3} & \textit{#4} \\
+    \end{tabularx}
+}
+
+% --- START OF DOCUMENT ---
 \begin{document}
 
 % --- HEADER ---
+% Replace with your personal information
 \begin{center}
-	{\LARGE \textbf{Thiago Macedo Mendes}}
-	\\[0.1cm]
-	Porto Velho, Rondônia, Brazil
-		{\textbullet}
-	Phone: +55 (69) 99314-6868
-		{\textbullet}
-	Email: \href{mailto:thiagomm@pm.me}{thiagomm@pm.me}
-	{\textbullet}
-	\href{https://www.linkedin.com/in/thiagomacedomendes}{linkedin.com/in/thiagomacedomendes}
-	{\textbullet}
-	\href{https://github.com/o-thiago}{github.com/o-thiago}
+    {\LARGE \textbf{Thiago Macedo Mendes}} 
+    \\ [0.1cm]
+    Porto Velho, Rondônia, Brazil
+    {\textbullet}
+    +55 (69) 99314-6868
+    {\textbullet}
+    \href{mailto:thiagomm@pm.me}{thiagomm@pm.me} 
+    {\textbullet}
+    \href{https://linkedin.com/in/thiagomacedomendes}{linkedin.com/in/thiagomacedomendes} 
+    {\textbullet}
+    \href{https://github.com/o-thiago}{github.com/o-thiago}
 \end{center}
 
 % --- SUMMARY ---
@@ -77,95 +108,67 @@ Computer Science student (UNIR) and IT Technician (IFRO) focused on software dev
 
 % --- EXPERIENCE ---
 \section{Experience}
-\subsection*{\texorpdfstring{
-		\textbf{IFRO - Federal Institute of Rondônia} \hfill Porto Velho, Rondônia, Brazil
-	}{
-		IFRO -- Porto Velho, Rondônia, Brazil
-	}}
-\textit{Administrative Assistant \hfill Jan 2025 - Dec 2025}
-\begin{itemize}
-	\item Outsourced contractor at the GPMecatrônica Research Group, in partnership with Belém Rio Segurança Ltda.
-	\item Developed web applications (Next.js, React, Tailwind CSS, oRPC) for internal GPMecatrônica projects.
-	\item Contributed to robotics activities and the production of scientific papers for the group.
-	\item Performed technical support, hardware maintenance, and environment standardization using Docker and Nix.
-\end{itemize}
+    % List your professional or academic experiences, most recent first
+    \cventry{IFRO - Federal Institute of Rondônia}{Porto Velho, Rondônia, Brazil}{Administrative Assistant}{Jan 2025 - Dec 2025}
+        \begin{itemize}
+            \item Outsourced contractor at the GPMecatrônica Research Group, in partnership with Belém Rio Segurança Ltda.
+            \item Developed web applications (Next.js, React, Tailwind CSS, oRPC) for internal GPMecatrônica projects.
+            \item Contributed to robotics activities and the production of scientific papers for the group.
+            \item Performed technical support, hardware maintenance, and environment standardization using Docker and Nix.
+        \end{itemize}
 
-\subsection*{\texorpdfstring{
-		\textbf{Censipam} \hfill Porto Velho, Rondônia, Brazil
-	}{
-		Censipam -- Porto Velho, Rondônia, Brazil
-	}}
-\textit{IT Intern \hfill Aug 2023 - Oct 2024}
-\begin{itemize}
-	\item Maintained the IT infrastructure for Censipam (Ministry of Defense).
-	\item Performed hardware maintenance (assembly, diagnostics) and installed operating systems.
-	\item Configured IP telephony network points within the building's infrastructure and provided technical support to internal users.
-\end{itemize}
+    \cventry{Censipam}{Porto Velho, Rondônia, Brazil}{IT Intern}{Aug 2023 - Oct 2024}
+        \begin{itemize}
+            \item Maintained the IT infrastructure for Censipam (Ministry of Defense).
+            \item Performed hardware maintenance (assembly, diagnostics) and installed operating systems.
+            \item Configured IP telephony network points within the building's infrastructure and provided technical support to internal users.
+        \end{itemize}
 
-\subsection*{\texorpdfstring{
-		\textbf{IFRO - Federal Institute of Rondônia} \hfill Porto Velho, Rondônia, Brazil
-	}{
-		IFRO -- Porto Velho, Rondônia, Brazil
-	}}
-\textit{Scientific Researcher \hfill Feb 2024 - Jul 2024}
-\begin{itemize}
-	\item Research fellow at the Technological Solutions Research Group (GoTec), focusing on web system development.
-	\item Contributed to the development of the "Innovation Radar" web solution, working on front-end and back-end (TypeScript, ReactJS, Laravel, PHP, MySQL).
-	\item Utilized Docker for containerization and Storybook for component documentation.
-\end{itemize}
+    \cventry{IFRO - Federal Institute of Rondônia}{Porto Velho, Rondônia, Brazil}{Scientific Researcher}{Feb 2024 - Jul 2024}
+        \begin{itemize}
+            \item Research fellow at the Technological Solutions Research Group (GoTec), focusing on web system development.
+            \item Contributed to the development of the "Innovation Radar" web solution, working on front-end and back-end (TypeScript, ReactJS, Laravel, PHP, MySQL).
+            \item Utilized Docker for containerization and Storybook for component documentation.
+        \end{itemize}
 
-\subsection*{\texorpdfstring{
-		\textbf{IFRO - Federal Institute of Rondônia} \hfill Porto Velho, Rondônia, Brazil
-	}{
-		IFRO -- Porto Velho, Rondônia, Brazil
-	}}
-\textit{Voluntary Researcher \hfill Sep 2023 - Feb 2024}
-\begin{itemize}
-	\item Voluntary researcher at the Technological Solutions Research Group (GoTec), focusing on technical training in web development (TypeScript, ReactJS, Laravel, PHP).
-	\item Assisted with the initial architecture of the "Innovation Radar" project.
-	\item Represented GoTec at scientific dissemination events, including presentations at Expo Favela.
-\end{itemize}
+    \cventry{IFRO - Federal Institute of Rondônia}{Porto Velho, Rondônia, Brazil}{Voluntary Researcher}{Sep 2023 - Feb 2024}
+        \begin{itemize}
+            \item Voluntary researcher at the Technological Solutions Research Group (GoTec), focusing on technical training in web development (TypeScript, ReactJS, Laravel, PHP).
+            \item Assisted with the initial architecture of the "Innovation Radar" project.
+            \item Represented GoTec at scientific dissemination events, including presentations at Expo Favela.
+        \end{itemize}
 
 % --- EDUCATION ---
 \section{Education}
-\subsection*{\texorpdfstring{
-		\textbf{Federal University of Rondônia} \hfill Porto Velho, Rondônia, Brazil
-	}{
-		Federal University of Rondônia -- Porto Velho, Rondônia, Brazil
-	}}
-\textit{Bachelor's Degree, Computer Science \hfill Feb 2026 - Dec 2029}
+    % Most recent education first
+    \cventry{Federal University of Rondônia}{Porto Velho, Rondônia, Brazil}{Bachelor's Degree, Computer Science}{Feb 2026 - Dec 2029}
 
-\subsection*{\texorpdfstring{
-		\textbf{IFRO - Federal Institute of Rondônia} \hfill Porto Velho, Rondônia, Brazil
-	}{
-		IFRO -- Porto Velho, Rondônia, Brazil
-	}}
-\textit{Technical Course in Informatics Integrated with High School \hfill Feb 2023 - Dec 2025}
+    \cventry{IFRO - Federal Institute of Rondônia}{Porto Velho, Rondônia, Brazil}{Technical Course in Informatics Integrated with High School}{Feb 2023 - Dec 2025}
 
 % --- SKILLS ---
 \section{Skills}
-\begin{itemize}
-	\item \textbf{Technologies:} TypeScript, Python, Next.js, Java, C, Rust, MySQL, MongoDB, PHP, Laravel, PostgreSQL, React, Docker, Nix, Information Technology Infrastructure, Computer Networking.
-	\item \textbf{Languages:} Portuguese (Native or Bilingual), English (Native or Bilingual), Spanish (Elementary).
-\end{itemize}
+    \begin{itemize}
+        \item \textbf{Technologies:} TypeScript, Python, Next.js, Java, C, Rust, MySQL, MongoDB, PHP, Laravel, PostgreSQL, React, Docker, Nix, Information Technology Infrastructure, Computer Networking.
+        \item \textbf{Languages:} Portuguese (Native or Bilingual), English (Native or Bilingual), Spanish (Elementary).
+    \end{itemize}
 
 % --- CERTIFICATIONS ---
 \section{Certifications}
-\begin{itemize}
-	\item Gold Medal - Tesouro Direto Financial Education Olympiad 2025
-	\item Silver Medal - Brazilian Robotics Olympiad (Theoretical) 2025
-	\item Honorable Mention - International Math Olympiad "Math Without Borders" 2025
-	\item Merit Honor - Brazilian Robotics Olympiad (Theoretical) 2024
-	\item Participation in the Brazilian Olympiad in Informatics (P2 in 2024, 2025; P1 in 2023)
-	\item Speaker at the 1st Polyglot Meeting of Calama - English Fundamentals (2024)
-	\item Python Developer and Full Stack Developer Bootcamps (IGTI)
-	\item Course "Oratory: The Art of Expressing Yourself Well" (IFRO 2024)
-	\item Personal Data Processing and Protection Course (Ministry of Defense 2024)
-	\item Exhibitor at the Rondoniense Week of Art, Heritage and Culture 2023
-	\item Participation in the Brazilian Astronomy and Astronautics Olympiad 2025
-	\item Participation in the National Week of Science and Technology (2023, 2024)
-	\item Participation in the Identity Culture and Environmental Education Festival 2024
-	\item Workshop on Professional Resume Writing and Job Interview Preparation 2025
-\end{itemize}
+    \begin{itemize}
+        \item Gold Medal - Tesouro Direto Financial Education Olympiad 2025
+        \item Silver Medal - Brazilian Robotics Olympiad (Theoretical) 2025
+        \item Honorable Mention - International Math Olympiad "Math Without Borders" 2025
+        \item Merit Honor - Brazilian Robotics Olympiad (Theoretical) 2024
+        \item Participation in the Brazilian Olympiad in Informatics (P2 in 2024, 2025; P1 in 2023)
+        \item Speaker at the 1st Polyglot Meeting of Calama - English Fundamentals (2024)
+        \item Python Developer and Full Stack Developer Bootcamps (IGTI)
+        \item Course "Oratory: The Art of Expressing Yourself Well" (IFRO 2024)
+        \item Personal Data Processing and Protection Course (Ministry of Defense 2024)
+        \item Exhibitor at the Rondoniense Week of Art, Heritage and Culture 2023
+        \item Participation in the Brazilian Astronomy and Astronautics Olympiad 2025
+        \item Participation in the National Week of Science and Technology (2023, 2024)
+        \item Participation in the Identity Culture and Environmental Education Festival 2024
+        \item Workshop on Professional Resume Writing and Job Interview Preparation 2025
+    \end{itemize}
 
 \end{document}
