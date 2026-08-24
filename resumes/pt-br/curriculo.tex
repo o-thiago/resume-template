@@ -13,62 +13,93 @@
 % a4paper = tamanho A4, 10pt = tamanho base da fonte
 \documentclass[a4paper,10pt]{article}
 
-% --- PACOTES ---
+% --- PACOTES: BASE / IDIOMA ---
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[portuguese]{babel}
+
+% --- PACOTES: LAYOUT / TIPOGRAFIA ---
 \usepackage{geometry}
 \usepackage{parskip}
-\usepackage{hyperref}
+\usepackage{microtype}
+\usepackage{enumitem}
 \usepackage{titlesec}
-% Para quebras de linha em URLs longas (não use \href{}, use \url{} para URLs longas)
-% \usepackage{xurl}
+\usepackage{array}
+\usepackage{tabularx}
 
-% --- CONFIGURAÇÃO DO DOCUMENTO ---
-% Define margens da página para maximizar espaço de conteúdo
-\geometry{top=1.0cm, bottom=1.0cm, left=1.0cm, right=1.0cm}
+% --- PACOTES: LINKS / BOOKMARKS ---
+\usepackage{hyperref}
+\usepackage{bookmark}
+\usepackage{xurl}
+
+% --- CONFIGURAÇÃO: MARGENS / ESPAÇAMENTO ---
+\geometry{top=1.5cm, bottom=1.5cm, left=1.5cm, right=1.5cm} % Margens da página
+\setcounter{secnumdepth}{0}                                 % Remove numeração de seção
+\setlist[itemize]{
+    leftmargin=0.75em, % Recuo da lista (mais perto da margem da página)
+    itemsep=0.2em,     % Espaço entre itens
+    topsep=0.25em,     % Espaço antes/depois da lista
+    parsep=0em,        % Espaço entre parágrafos no mesmo item
+    partopsep=0em      % Espaço extra ao iniciar a lista
+}
 
 % Remove números de página e cabeçalhos para visual limpo do currículo
 \pagestyle{empty}
 
-% Metadados do PDF - personalize com suas informações
+% --- CONFIGURAÇÃO: METADADOS / LINKS ---
 \hypersetup{
-    pdftitle={CV Thiago Macedo Mendes},
-    pdfauthor={Thiago Macedo Mendes},
-    colorlinks=true,
-    linkcolor=black,
-    urlcolor=black,
-    citecolor=black,
-    bookmarksdepth=1 
+    pdftitle={CV Thiago Macedo Mendes},   % Título do PDF
+    pdfauthor={Thiago Macedo Mendes},     % Autor do PDF
+    colorlinks=true,          % Usa cor nos links (sem caixa)
+    linkcolor=black,          % Cor de links internos
+    urlcolor=black,           % Cor de URLs
+    citecolor=black,          % Cor de citações
+    bookmarksdepth=2          % Barra lateral: seção e subseção
 }
 
-% Desabilita numeração das sections
-\setcounter{secnumdepth}{0}
-
-% Formata os cabeçalhos de cada section e coloca uma linha em baixo
+% --- CONFIGURAÇÃO: TÍTULOS ---
 \titleformat{\section}
 {\Large\bfseries}
 {}
 {0em}
 {}
 [\titlerule\vspace{0.5ex}]
+\titleformat{\subsection}
+{\normalsize\bfseries}
+{}
+{0em}
+{}
+\titlespacing*{\subsection}{0pt}{0.35em}{0.15em}
+
+% Macro para entradas do currículo com bookmark no PDF
+\newcounter{cventry}
+\newcommand{\cventry}[4]{%
+    \refstepcounter{cventry}%
+    \phantomsection%
+    \pdfbookmark[2]{#1}{cventry-\thecventry}%
+    \noindent\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X >{\raggedleft\arraybackslash}X@{}}
+    \textbf{#1} & #2 \\
+    \textit{#3} & \textit{#4} \\
+    \end{tabularx}
+}
 
 % --- INÍCIO DO DOCUMENTO ---
 \begin{document}
 
 % --- CABEÇALHO ---
+% Substitua por suas informações pessoais
 \begin{center}
-	{\LARGE \textbf{Thiago Macedo Mendes}}
-	\\ [0.1cm]
-	Porto Velho, Rondônia, Brasil
-		{\textbullet}
-	Telefone: +55 (69) 99314-6868
-		{\textbullet}
-	Email: \href{mailto:thiagomm@pm.me}{thiagomm@pm.me}
-	{\textbullet}
-	\href{https://www.linkedin.com/in/thiagomacedomendes}{linkedin.com/in/thiagomacedomendes}
-	{\textbullet}
-	\href{https://github.com/o-thiago}{github.com/o-thiago}
+    {\LARGE \textbf{Thiago Macedo Mendes}} 
+    \\ [0.1cm]
+    Porto Velho, Rondônia, Brasil
+    {\textbullet}
+    +55 (69) 99314-6868
+    {\textbullet}
+    \href{mailto:thiagomm@pm.me}{thiagomm@pm.me} 
+    {\textbullet}
+    \href{https://linkedin.com/in/thiagomacedomendes}{linkedin.com/in/thiagomacedomendes} 
+    {\textbullet}
+    \href{https://github.com/o-thiago}{github.com/o-thiago}
 \end{center}
 
 % --- RESUMO ---
@@ -77,97 +108,67 @@ Estudante de Ciência da Computação (UNIR) e Técnico em Informática (IFRO) c
 
 % --- EXPERIÊNCIA ---
 \section{Experiência}
+    % Liste suas experiências profissionais ou acadêmicas, da mais recente para a mais antiga
+    \cventry{IFRO - Instituto Federal de Rondônia}{Porto Velho, Rondônia, Brasil}{Assistente administrativo}{Jan 2025 - Dez 2025}
+        \begin{itemize}
+            \item Atuei de forma terceirizada no Grupo de Pesquisa GPMecatrônica, em parceria com a Belém Rio Segurança Ltda.
+            \item Desenvolvi aplicações web (Next.js, React, Tailwind CSS, oRPC) para projetos internos do GPMecatrônica.
+            \item Colaborei em atividades de robótica e produção de artigos científicos vinculados ao grupo.
+            \item Realizei suporte técnico, manutenção de laboratório e padronização de ambientes com Docker e Nix.
+        \end{itemize}
 
-\subsection*{\texorpdfstring{
-		\textbf{IFRO - Instituto Federal de Rondônia} \hfill Porto Velho, Rondônia, Brasil
-	}{
-		IFRO -- Porto Velho, Rondônia, Brasil
-	}}
-\textit{Assistente administrativo \hfill Jan 2025 - Dez 2025}
-\begin{itemize}
-	\item Atuei de forma terceirizada no Grupo de Pesquisa GPMecatrônica, em parceria com a Belém Rio Segurança Ltda.
-	\item Desenvolvi aplicações web (Next.js, React, Tailwind CSS, oRPC) para projetos internos do GPMecatrônica.
-	\item Colaborei em atividades de robótica e produção de artigos científicos vinculados ao grupo.
-	\item Realizei suporte técnico, manutenção de laboratório e padronização de ambientes com Docker e Nix.
-\end{itemize}
+    \cventry{Centro Gestor e Operacional do Sistema de Proteção da Amazônia (Censipam)}{Porto Velho, Rondônia, Brasil}{Estagiário de TI}{Ago 2023 - Out 2024}
+        \begin{itemize}
+            \item Atuei na manutenção da infraestrutura de TI do Censipam (Ministério da Defesa).
+            \item Realizei manutenção de hardware (montagem, diagnóstico) e instalação de sistemas operacionais.
+            \item Configurei pontos de rede de telefonia IP e prestei suporte técnico contínuo aos usuários internos.
+        \end{itemize}
 
-\subsection*{\texorpdfstring{
-		\textbf{Centro Gestor e Operacional do Sistema de Proteção da Amazônia (Censipam)} \hfill Porto Velho, Rondônia, Brasil
-	}{
-		Censipam -- Porto Velho, Rondônia, Brasil
-	}}
-\textit{Estagiário de TI \hfill Ago 2023 - Out 2024}
-\begin{itemize}
-	\item Atuei na manutenção da infraestrutura de TI do Censipam (Ministério da Defesa).
-	\item Realizei manutenção de hardware (montagem, diagnóstico) e instalação de sistemas operacionais.
-	\item Configurei pontos de rede de telefonia IP e prestei suporte técnico contínuo aos usuários internos.
-\end{itemize}
+    \cventry{IFRO - Instituto Federal de Rondônia}{Porto Velho, Rondônia, Brasil}{Pesquisador científico}{Fev 2024 - Jul 2024}
+        \begin{itemize}
+            \item Bolsista de pesquisa no Grupo de Pesquisa em Soluções Tecnológicas (GoTec), com foco em desenvolvimento web.
+            \item Contribuí para o desenvolvimento da solução web "Radar da Inovação" atuando no front-end e back-end (TypeScript, ReactJS, Laravel, PHP, MySQL).
+            \item Utilizei Docker para containerização, Storybook para documentação e apliquei boas práticas em projetos acadêmicos.
+        \end{itemize}
 
-\subsection*{\texorpdfstring{
-		\textbf{IFRO - Instituto Federal de Rondônia} \hfill Porto Velho, Rondônia, Brasil
-	}{
-		IFRO -- Porto Velho, Rondônia, Brasil
-	}}
-\textit{Pesquisador científico \hfill Fev 2024 - Jul 2024}
-\begin{itemize}
-	\item Bolsista de pesquisa no Grupo de Pesquisa em Soluções Tecnológicas (GoTec), com foco em desenvolvimento web.
-	\item Contribuí para o desenvolvimento da solução web "Radar da Inovação" atuando no front-end e back-end (TypeScript, ReactJS, Laravel, PHP, MySQL).
-	\item Utilizei Docker para containerização, Storybook para documentação e apliquei boas práticas em projetos acadêmicos.
-\end{itemize}
-
-\subsection*{\texorpdfstring{
-		\textbf{IFRO - Instituto Federal de Rondônia} \hfill Porto Velho, Rondônia, Brasil
-	}{
-		IFRO -- Porto Velho, Rondônia, Brasil
-	}}
-\textit{Pesquisador voluntário \hfill Set 2023 - Fev 2024}
-\begin{itemize}
-	\item Atuação voluntária no Grupo de Pesquisa em Soluções Tecnológicas (GoTec) para capacitação técnica em web (TypeScript, ReactJS, Laravel, PHP).
-	\item Apoio inicial à arquitetura do projeto "Radar da Inovação".
-	\item Representação do GoTec em eventos de difusão científica, realizando apresentações na Expo Favela.
-\end{itemize}
+    \cventry{IFRO - Instituto Federal de Rondônia}{Porto Velho, Rondônia, Brasil}{Pesquisador voluntário}{Set 2023 - Fev 2024}
+        \begin{itemize}
+            \item Atuação voluntária no Grupo de Pesquisa em Soluções Tecnológicas (GoTec) para capacitação técnica em web (TypeScript, ReactJS, Laravel, PHP).
+            \item Apoio inicial à arquitetura do projeto "Radar da Inovação".
+            \item Representação do GoTec em eventos de difusão científica, realizando apresentações na Expo Favela.
+        \end{itemize}
 
 % --- EDUCAÇÃO ---
 \section{Educação}
+    % Formação mais recente primeiro
+    \cventry{Universidade Federal de Rondônia}{Porto Velho, Rondônia, Brasil}{Bacharelado, Ciência da Computação}{Fev 2026 - Dez 2029}
 
-\subsection*{\texorpdfstring{
-		\textbf{Universidade Federal de Rondônia} \hfill Porto Velho, Rondônia, Brasil
-	}{
-		Universidade Federal de Rondônia -- Porto Velho, Rondônia, Brasil
-	}}
-\textit{Bacharelado, Ciência da Computação \hfill Fev 2026 - Dez 2029}
-
-\subsection*{\texorpdfstring{
-		\textbf{IFRO - Instituto Federal de Rondônia} \hfill Porto Velho, Rondônia, Brasil
-	}{
-		IFRO -- Porto Velho, Rondônia, Brasil
-	}}
-\textit{Técnico em Informática Integrado ao Ensino Médio \hfill Fev 2023 - Dez 2025}
+    \cventry{IFRO - Instituto Federal de Rondônia}{Porto Velho, Rondônia, Brasil}{Técnico em Informática Integrado ao Ensino Médio}{Fev 2023 - Dez 2025}
 
 % --- HABILIDADES ---
 \section{Habilidades}
-\begin{itemize}
-	\item \textbf{Tecnologias:} TypeScript, Python, Next.js, Java, C, Rust, MySQL, MongoDB, PHP, Laravel, PostgreSQL, React, Docker, Nix, Infraestrutura de tecnologia da informação, Rede de computadores.
-	\item \textbf{Idiomas:} Inglês (Nativo ou Bilíngue), Espanhol (Básico), Português (Nativo ou Bilíngue).
-\end{itemize}
+    \begin{itemize}
+        \item \textbf{Tecnologias:} TypeScript, Python, Next.js, Java, C, Rust, MySQL, MongoDB, PHP, Laravel, PostgreSQL, React, Docker, Nix, Infraestrutura de tecnologia da informação, Rede de computadores.
+        \item \textbf{Idiomas:} Português (Nativo ou Bilíngue), Inglês (Nativo ou Bilíngue), Espanhol (Básico).
+    \end{itemize}
 
 % --- CERTIFICAÇÕES ---
 \section{Certificações}
-\begin{itemize}
-	\item Medalha de Ouro - Olimpíada do Tesouro Direto de Educação Financeira 2025
-	\item Medalha de Prata - Olimpíada Brasileira de Robótica (Teórica) 2025
-	\item Menção Honrosa - Olimpíada Internacional de Matemática sem Fronteiras 2025
-	\item Honra ao Mérito - Olimpíada Brasileira de Robótica (Teórica) 2024
-	\item Participação na Olimpíada Brasileira de Informática (P2 em 2024, 2025; P1 em 2023)
-	\item Palestrante no 1° Encontro Poliglota do Calama - Fundamentos do Inglês (2024)
-	\item Bootcamps Desenvolvedor(a) Python e Full Stack (IGTI)
-	\item Curso "Oratória: a arte de se expressar bem" (IFRO 2024)
-	\item Curso de Tratamento e Proteção de Dados Pessoais (Ministério da Defesa 2024)
-	\item Expositor na Semana Rondoniense de Arte Patrimônio e Cultura 2023
-	\item Participação na Olimpíada Brasileira de Astronomia e Astronáutica 2025
-	\item Participação na Semana Nacional de Ciência e Tecnologia (2023, 2024)
-	\item Participação no Festival de Cultura Identidade e Educação Ambiental 2024
-	\item Oficina de Elaboração de Currículo e Preparação para Entrevistas 2025
-\end{itemize}
+    \begin{itemize}
+        \item Medalha de Ouro - Olimpíada do Tesouro Direto de Educação Financeira 2025
+        \item Medalha de Prata - Olimpíada Brasileira de Robótica (Teórica) 2025
+        \item Menção Honrosa - Olimpíada Internacional de Matemática sem Fronteiras 2025
+        \item Honra ao Mérito - Olimpíada Brasileira de Robótica (Teórica) 2024
+        \item Participação na Olimpíada Brasileira de Informática (P2 em 2024, 2025; P1 em 2023)
+        \item Palestrante no 1° Encontro Poliglota do Calama - Fundamentos do Inglês (2024)
+        \item Bootcamps Desenvolvedor(a) Python e Full Stack (IGTI)
+        \item Curso "Oratória: a arte de se expressar bem" (IFRO 2024)
+        \item Curso de Tratamento e Proteção de Dados Pessoais (Ministério da Defesa 2024)
+        \item Expositor na Semana Rondoniense de Arte Patrimônio e Cultura 2023
+        \item Participação na Olimpíada Brasileira de Astronomia e Astronáutica 2025
+        \item Participação na Semana Nacional de Ciência e Tecnologia (2023, 2024)
+        \item Participação no Festival de Cultura Identidade e Educação Ambiental 2024
+        \item Oficina de Elaboração de Currículo e Preparação para Entrevistas 2025
+    \end{itemize}
 
 \end{document}
