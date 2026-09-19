@@ -22,7 +22,7 @@
 A professional, clean, and modern resume template ported to [Typst](https://typst.app). Driven by structured CV data (`cv-data`), compiling to high-quality PDFs in milliseconds.
 
 ## Features
-- **Data-Driven**: Resumes consume data directly from central `cv-data` (`cv.yaml` / `cv.toml`).
+- **Data-Driven**: Resumes consume data directly from central `cv-data` (`cv.yaml`).
 - **Lightning Fast**: Compiles instantaneously via Typst CLI.
 - **Reproducible**: Managed and built with Nix flakes (`nix build`).
 - **Bilingual**: Full support for English (`resumes/en/resume.typ`) and Brazilian Portuguese (`resumes/pt-br/curriculo.typ`).
@@ -53,7 +53,7 @@ typst compile --root . resumes/pt-br/curriculo.typ resumes/pt-br/curriculo.pdf
 Um modelo de currículo profissional, limpo e moderno portado para o [Typst](https://typst.app). Alimentado por dados estruturados centralizados (`cv-data`), compilando PDFs de alta fidelidade em milissegundos.
 
 ## Recursos
-- **Orientado a Dados**: O currículo consome informações diretamente do repositório central `cv-data` (`cv.yaml` / `cv.toml`).
+- **Orientado a Dados**: O currículo consome informações diretamente do repositório central `cv-data` (`cv.yaml`).
 - **Ultrarrápido**: Compilação instantânea com a CLI do Typst.
 - **Reprodutível**: Empacotado e compilado com Nix flakes (`nix build`).
 - **Bilíngue**: Suporte completo para Inglês (`resumes/en/resume.typ`) e Português Brasileiro (`resumes/pt-br/curriculo.typ`).
