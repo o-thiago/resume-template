@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "cv-data": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1789797810,
+        "narHash": "sha256-MH+R8Bou/K792X/TNpkNvU+Kz5/g7sqOs4e3he5Gk/U=",
+        "ref": "refs/heads/main",
+        "rev": "96dc0273fd4031e207d78e7bd8bc1021ebdcd4a6",
+        "revCount": 1,
+        "type": "git",
+        "url": "file:///home/rika/Programming/cv-data"
+      },
+      "original": {
+        "type": "git",
+        "url": "file:///home/rika/Programming/cv-data"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": "nixpkgs-lib"
@@ -51,6 +67,7 @@
     },
     "root": {
       "inputs": {
+        "cv-data": "cv-data",
         "flake-parts": "flake-parts",
         "nixpkgs": "nixpkgs",
         "systems": "systems"

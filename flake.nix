@@ -1,10 +1,14 @@
 {
-  description = "Thiago Macedo Mendes - Curriculum Vitae (LaTeX / ModernCV / Nix)";
+  description = "Thiago Macedo Mendes - Curriculum Vitae (Typst / Nix)";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
     systems.url = "github:nix-systems/default";
+    cv-data = {
+      url = "git+file:///home/rika/Programming/cv-data";
+      flake = false;
+    };
   };
 
   outputs =
@@ -14,8 +18,6 @@
       perSystem =
         { pkgs, ... }:
         let
-          tex = pkgs.texliveFull;
-
           buildCv =
             { name, srcDir }:
             pkgs.stdenv.mkDerivation {
@@ -23,12 +25,12 @@
               version = "1.0.0";
               src = ./.;
 
-              nativeBuildInputs = [ tex ];
+              nativeBuildInputs = [ pkgs.typst ];
 
               buildPhase = ''
-                cd resumes/${srcDir}
-                pdflatex -interaction=nonstopmode ${name}.tex
-                pdflatex -interaction=nonstopmode ${name}.tex
+                mkdir -p data
+                cp -f ${inputs.cv-data}/cv.yaml data/cv.yaml
+                typst compile --root . resumes/${srcDir}/${name}.typ ${name}.pdf
               '';
 
               installPhase = ''
@@ -52,21 +54,22 @@
             version = "1.0.0";
             src = ./.;
 
-            nativeBuildInputs = [ tex ];
+            nativeBuildInputs = [ pkgs.typst ];
 
             buildPhase = ''
-              mkdir -p build/en build/pt-br
-              cp -r resumes/en/* build/en/
-              (cd build/en && pdflatex -interaction=nonstopmode resume.tex)
-              cp -r resumes/pt-br/* build/pt-br/
-              (cd build/pt-br && pdflatex -interaction=nonstopmode curriculo.tex)
+              mkdir -p data
+              cp -f ${inputs.cv-data}/cv.yaml data/cv.yaml
+              typst compile --root . resumes/en/resume.typ resume.pdf
+              typst compile --root . resumes/pt-br/curriculo.typ curriculo.pdf
             '';
 
             installPhase = ''
               mkdir -p $out/resumes/en $out/resumes/pt-br
               cp -r resumes $out/
-              cp build/en/resume.pdf $out/resume.pdf
-              cp build/pt-br/curriculo.pdf $out/curriculo.pdf
+              cp resume.pdf $out/resume.pdf
+              cp resume.pdf $out/resumes/en/resume.pdf
+              cp curriculo.pdf $out/curriculo.pdf
+              cp curriculo.pdf $out/resumes/pt-br/curriculo.pdf
             '';
           };
         in
@@ -78,7 +81,11 @@
           };
 
           devShells.default = pkgs.mkShell {
-            buildInputs = [ tex ];
+            packages = with pkgs; [
+              typst
+              typstyle
+              tinymist
+            ];
           };
         };
     };
