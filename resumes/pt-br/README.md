@@ -47,4 +47,4 @@ Estas dicas foram adaptadas do artigo da [Harvard](https://careerservices.fas.ha
 
 ---
 
-Para dúvidas sobre o template LaTeX, consulte os comentários no arquivo `curriculo.tex`.
+Para dúvidas sobre o template Typst, consulte o arquivo `curriculo.typ` ou `../../template.typ`.

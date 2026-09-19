@@ -9,11 +9,11 @@
         "rev": "96dc0273fd4031e207d78e7bd8bc1021ebdcd4a6",
         "revCount": 1,
         "type": "git",
-        "url": "file:///home/rika/Programming/cv-data"
+        "url": "file:../cv-data"
       },
       "original": {
         "type": "git",
-        "url": "file:///home/rika/Programming/cv-data"
+        "url": "file:../cv-data"
       }
     },
     "flake-parts": {
