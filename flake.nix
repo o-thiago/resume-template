@@ -34,6 +34,9 @@
               buildPhase = ''
                 mkdir -p data
                 cp -f ${inputs.cv-data}/cv.yaml data/cv.yaml
+                if [ -f ${inputs.cv-data}/cv.schema.json ]; then
+                  cp -f ${inputs.cv-data}/cv.schema.json data/cv.schema.json
+                fi
                 typst compile --root . resumes/${srcDir}/${name}.typ ${name}.pdf
               '';
 
@@ -63,6 +66,9 @@
             buildPhase = ''
               mkdir -p data
               cp -f ${inputs.cv-data}/cv.yaml data/cv.yaml
+              if [ -f ${inputs.cv-data}/cv.schema.json ]; then
+                cp -f ${inputs.cv-data}/cv.schema.json data/cv.schema.json
+              fi
               typst compile --root . resumes/en/resume.typ resume.pdf
               typst compile --root . resumes/pt-br/curriculo.typ curriculo.pdf
             '';

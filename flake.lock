@@ -13,11 +13,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1789801741,
-        "narHash": "sha256-cT1wnUM2cuFWgEPuACPNsdgKq8f4FCU9PxwJC/qVxS0=",
+        "lastModified": 1789801906,
+        "narHash": "sha256-eWGF/P5SC1an39ufOps5EHrPBmpV8wctM26RASCzy08=",
         "ref": "refs/heads/main",
-        "rev": "dd0ad6538ce2d64c1c9b61c2cd6991f7e035b7c0",
-        "revCount": 4,
+        "rev": "5ebce004cc42a4eaae6e3dbb8e02f42ad2a0a4e1",
+        "revCount": 5,
         "type": "git",
         "url": "file:///home/rika/Programming/cv-data"
       },
