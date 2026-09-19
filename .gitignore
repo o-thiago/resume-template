@@ -30,3 +30,9 @@ Thumbs.db
 
 .idea
 result
+
+# Data generated from cv-data flake
+data/
+
+# Compiled PDFs
+*.pdf

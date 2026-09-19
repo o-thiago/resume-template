@@ -6,7 +6,7 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     systems.url = "github:nix-systems/default";
     cv-data = {
-      url = "git+file:./submodules/cv-data";
+      url = "git+file:../cv-data";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
@@ -57,6 +57,14 @@
               typstyle
               tinymist
             ];
+
+            shellHook = ''
+              mkdir -p data
+              cp -f ${inputs.cv-data}/cv.yaml data/cv.yaml
+              if [ -f ${inputs.cv-data}/cv.schema.json ]; then
+                cp -f ${inputs.cv-data}/cv.schema.json data/cv.schema.json
+              fi
+            '';
           };
         };
     };
