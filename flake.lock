@@ -13,16 +13,17 @@
         ]
       },
       "locked": {
-        "dirtyRev": "1c1d1b7136217e313c823d4e1735cd84f5e7dff6-dirty",
-        "dirtyShortRev": "1c1d1b7-dirty",
-        "lastModified": 1789850088,
-        "narHash": "sha256-Y1MqImZf0Z/KTXjeKdRr7pYvjZEvOD5t2np3pvgbAVQ=",
+        "lastModified": 1789801906,
+        "narHash": "sha256-xi9eZzt8BbGA8cJHSy9ml5snTgEgl936l7vWlt1uKvk=",
+        "ref": "refs/heads/main",
+        "rev": "f1bd9ea9ebf6484330462bc463559f81109b1d55",
+        "revCount": 5,
         "type": "git",
-        "url": "file:///home/rika/Programming/cv-data"
+        "url": "file:./submodules/cv-data"
       },
       "original": {
         "type": "git",
-        "url": "file:///home/rika/Programming/cv-data"
+        "url": "file:./submodules/cv-data"
       }
     },
     "flake-parts": {
