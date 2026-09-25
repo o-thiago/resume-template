@@ -6,7 +6,7 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     systems.url = "github:nix-systems/default";
     cv-data = {
-      url = "git+file:../cv-data";
+      url = "github:o-thiago/cv-data";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";

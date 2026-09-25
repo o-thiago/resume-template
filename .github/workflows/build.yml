@@ -11,19 +11,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Typst
-        uses: typst-community/setup-typst@v3
+      - name: Install Nix
+        uses: cachix/install-nix-action@v30
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
 
-      - name: Build English Resume
-        run: typst compile --root . resumes/en/resume.typ resumes/en/resume.pdf
+      - name: Build Resumes with Nix
+        run: nix build
 
-      - name: Build Portuguese Resume
-        run: typst compile --root . resumes/pt-br/curriculo.typ resumes/pt-br/curriculo.pdf
-      
       - name: Upload generated PDFs to GitHub Actions Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: resumes
           path: |
-            resumes/en/resume.pdf
-            resumes/pt-br/curriculo.pdf
+            result/resume.pdf
+            result/curriculo.pdf

@@ -13,17 +13,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1789852186,
-        "narHash": "sha256-8wEYd4mL0+E8/kwWzT3aqgIjKLy3AStR2/UOyKwUc38=",
-        "ref": "refs/heads/main",
-        "rev": "4bd1aff66606fa4a7c7018d81b3e509dc3121202",
-        "revCount": 8,
-        "type": "git",
-        "url": "file:../cv-data"
+        "lastModified": 1789858775,
+        "narHash": "sha256-af9ixL6DVHlqcOIM9cls/QzFlqfwQKgcOmWQOs5wkrk=",
+        "owner": "o-thiago",
+        "repo": "cv-data",
+        "rev": "2ad36a4f452e817cdb97118bcb11af27e3178777",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:../cv-data"
+        "owner": "o-thiago",
+        "repo": "cv-data",
+        "type": "github"
       }
     },
     "flake-parts": {
